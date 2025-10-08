@@ -15,7 +15,7 @@ const Carousel = () => {
             />
           </div>
           <div className="carousel-item">
-            <img src="/india.jpg" className="d-block w-25" alt="..." />
+            <img src="/india.webp" className="d-block w-25" alt="..." />
           </div>
         </div>
         <button
