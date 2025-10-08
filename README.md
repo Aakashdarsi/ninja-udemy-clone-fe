@@ -71,3 +71,5 @@ export default defineConfig([
   },
 ]);
 ```
+
+![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/Aakashdarsi/2025_Sri_Guru_Aakash_Darsi_FE?utm_source=oss&utm_medium=github&utm_campaign=Aakashdarsi%2F2025_Sri_Guru_Aakash_Darsi_FE&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)
