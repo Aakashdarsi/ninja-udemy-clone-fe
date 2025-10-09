@@ -4,8 +4,6 @@ import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const counter = useCartStore((state) => state.counter);
-  const increment = useCartStore((state) => state.increment);
-  const decrement = useCartStore((state) => state.decrement);
   const navigate = useNavigate();
 
   return (

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import ShimmerPlaceHolder from "./layout/ShimmerPlaceHolder";
-import { Model } from "./Model";
 import Partition from "./Partition";
 import ProductCard from "./ProductCard";
 import { getCountries } from "@yusifaliyevpro/countries";

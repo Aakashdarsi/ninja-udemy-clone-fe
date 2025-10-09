@@ -27,19 +27,9 @@ export interface CartItem {
 
 interface CartProps {
   items: CartItem[];
-  onUpdateQuantity: (itemId: string, newQuantity: number) => void;
-  onRemoveItem: (itemId: string) => void;
-  onProceedToPayment: () => void;
-  isLoading?: boolean;
 }
 
-const CartSummary: React.FC<CartProps> = ({
-  items,
-  onUpdateQuantity,
-  onRemoveItem,
-  onProceedToPayment,
-  isLoading = false,
-}) => {
+const CartSummary: React.FC<CartProps> = ({ items }) => {
   const [couponCode, setCouponCode] = useState("");
   const [appliedCoupon, setAppliedCoupon] = useState<string | null>(null);
   const [couponError, setCouponError] = useState("");
@@ -59,7 +49,6 @@ const CartSummary: React.FC<CartProps> = ({
     if (newQuantity < 1) return;
     const item = items.find((item) => item.id === itemId);
     if (item && newQuantity > item.maxQuantity) return;
-    onUpdateQuantity(itemId, newQuantity);
   };
 
   // Handle coupon application
@@ -89,7 +78,6 @@ const CartSummary: React.FC<CartProps> = ({
   // Handle proceed to payment
   const handleProceedToPayment = () => {
     if (items.length === 0) return;
-    onProceedToPayment();
   };
 
   if (items.length === 0) {
@@ -227,11 +215,7 @@ const CartSummary: React.FC<CartProps> = ({
                             <div className="fw-bold h6 mb-2">
                               ${(item.price * item.quantity).toFixed(2)}
                             </div>
-                            <Button
-                              variant="outline-danger"
-                              size="sm"
-                              onClick={() => onRemoveItem(item.id)}
-                            >
+                            <Button variant="outline-danger" size="sm">
                               Remove
                             </Button>
                           </Col>
@@ -364,12 +348,7 @@ const CartSummary: React.FC<CartProps> = ({
                     variant="primary"
                     size="lg"
                     onClick={handleProceedToPayment}
-                    disabled={isLoading}
-                  >
-                    {isLoading
-                      ? "Processing..."
-                      : `Proceed to Payment - $${total.toFixed(2)}`}
-                  </Button>
+                  ></Button>
                 </div>
 
                 {/* Security Badge */}

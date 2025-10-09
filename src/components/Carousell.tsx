@@ -1,12 +1,14 @@
 import Carousel from "react-bootstrap/Carousel";
 import ExampleCarouselImage from "./ExampleCarouselImage";
-import { Card } from "react-bootstrap";
 
 function Carousell() {
   return (
     <Carousel>
       <Carousel.Item>
-        <ExampleCarouselImage src="/carous-1.webp" alt="First slide" />
+        <ExampleCarouselImage
+          src="https://firebasestorage.googleapis.com/v0/b/deft-epoch-474415-h3.firebasestorage.app/o/public%2Fcarous-1.webp?alt=media"
+          alt="First slide"
+        />
         <Carousel.Caption
           style={{
             color: "black",
@@ -23,7 +25,10 @@ function Carousell() {
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
-        <ExampleCarouselImage src="/carous-2.webp" alt="Second slide" />
+        <ExampleCarouselImage
+          src="https://firebasestorage.googleapis.com/v0/b/deft-epoch-474415-h3.firebasestorage.app/o/carous-2.webp?alt=media"
+          alt="Second slide"
+        />
 
         <Carousel.Caption
           style={{

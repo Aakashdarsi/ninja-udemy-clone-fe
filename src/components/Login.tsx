@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { signInWithPopup } from "firebase/auth";
 import GoogleButton from "react-google-button";
 import { auth, google_auth_provider } from "../config/firebase";

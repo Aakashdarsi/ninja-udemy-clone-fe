@@ -3,15 +3,14 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Image from "react-bootstrap/Image";
-import GoogleButton from "react-google-button";
+
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Cart from "../Cart";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useCartStore } from "../../state";
 
 function NavbarC() {
   const navigate = useNavigate();

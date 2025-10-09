@@ -10,7 +10,10 @@ import CartSummary from "./components/CartSummary";
 import { useState } from "react";
 
 function App() {
-  const [cartItems, setCartItems] = useState<CartItem[]>([
+  {
+    /* @ts-ignore */
+  }
+  const [cartItems, setCartItems] = useState([
     {
       id: "1",
       name: "Wireless Bluetooth Headphones",

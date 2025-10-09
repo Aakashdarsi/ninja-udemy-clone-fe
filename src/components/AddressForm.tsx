@@ -18,13 +18,11 @@ interface AddressFormData {
 }
 
 interface AddressFormProps {
-  onSubmit: (data: AddressFormData) => void;
   initialData?: Partial<AddressFormData>;
   isLoading?: boolean;
 }
 
 const AddressForm: React.FC<AddressFormProps> = ({
-  onSubmit,
   initialData,
   isLoading = false,
 }) => {
@@ -70,8 +68,6 @@ const AddressForm: React.FC<AddressFormProps> = ({
       setValidated(true);
       return;
     }
-
-    onSubmit(formData);
   };
 
   useEffect(() => {
