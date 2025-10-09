@@ -2,7 +2,7 @@ import ProductCard from "./ProductCard";
 
 const Partition = () => {
   return (
-    <div className="container-fluid card">
+    <div className="container-fluid ">
       <div className="row">
         <div className="col-3">
           <b>Learn essential career and life skills</b>
@@ -12,8 +12,10 @@ const Partition = () => {
           </p>
         </div>
         <div className="col-9">
-          <div className="container">
-            <div className="d-flex">
+          <div className="container-fluid">
+            <div className="d-flex flex-wrap justify-content-between">
+              <ProductCard />
+              <ProductCard />
               <ProductCard />
               <ProductCard />
             </div>

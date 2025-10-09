@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "./Navbar";
+import NavbarC from "./NavbarC";
 import Footer from "./Footer";
 
 const AppLayout = ({
@@ -9,12 +9,12 @@ const AppLayout = ({
 }>) => {
   return (
     <div className="d-flex flex-column min-vh-100">
-      <div className="fixed-top">
-        <Navbar />
+      <div className="sticky-top">
+        <NavbarC />
       </div>
 
       <main className="flex-grow-1 container-fluid">{children}</main>
-      <div className="fixed-bottom">
+      <div className="sticky-bottom mt-auto">
         <Footer />
       </div>
     </div>
