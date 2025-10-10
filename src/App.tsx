@@ -8,7 +8,9 @@ import { Login } from "./components/Login";
 import AddressForm from "./components/AddressForm";
 import CartSummary from "./components/CartSummary";
 import { useState } from "react";
-
+import ItemForm from "./components/ItemForm";
+import { Inventory } from "./components/Inventory";
+import { getStorage } from "firebase/storage";
 function App() {
   {
     /* @ts-ignore */
@@ -78,6 +80,8 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/addr" element={<AddressForm />} />
           <Route path="/cart" element={<CartSummary items={cartItems} />} />
+          <Route path="/add" element={<ItemForm />} />
+          <Route path="/inventory" element={<Inventory />} />
         </Routes>
       </AppLayout>
     </>

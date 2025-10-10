@@ -95,7 +95,7 @@ const AddressForm: React.FC<AddressFormProps> = ({
   return (
     <Card className="p-4">
       <Card.Body>
-        <Card.Title className="mb-4">Shipping Address</Card.Title>
+        <Card.Title className="mb-4">Billing Address</Card.Title>
 
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
           {/* Personal Information */}

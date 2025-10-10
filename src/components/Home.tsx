@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ShimmerPlaceHolder from "./layout/ShimmerPlaceHolder";
 import Partition from "./Partition";
-import ProductCard from "./ProductCard";
+import ProductCard from "./shared/ProductCard";
 import { getCountries } from "@yusifaliyevpro/countries";
 import Carousell from "./Carousell";
 
@@ -39,7 +39,7 @@ const Home = () => {
             <Partition />
           </div>
           <div className="mt-2">
-            <h4 className="text-center roboto-regular">Trending Courses</h4>
+            <h4 className="text-center roboto-regular">Trending Images</h4>
 
             <div className="d-flex justify-content-between">
               <ProductCard />

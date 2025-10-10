@@ -1,9 +1,9 @@
 import Badge from "react-bootstrap/Badge";
-import { useCartStore } from "../state";
+import { useCartStore } from "../data_store/cart_store";
 import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
-  const counter = useCartStore((state) => state.counter);
+  const counter = useCartStore((state) => state.overallQty);
   const navigate = useNavigate();
 
   return (

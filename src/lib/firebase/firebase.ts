@@ -9,8 +9,10 @@ const firebaseConfig = {
   messagingSenderId: "292768677111",
   appId: "1:292768677111:web:1a4fe08d8d86ce1efea7f2",
   measurementId: "G-H7DGLB1E2S",
+  databaseUrl:
+    "https://deft-epoch-474415-h3-default-rtdb.asia-southeast1.firebasedatabase.app/",
 };
 
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const google_auth_provider = new GoogleAuthProvider();

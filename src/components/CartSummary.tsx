@@ -1,4 +1,3 @@
-// Cart.tsx
 import React, { useState } from "react";
 import {
   Card,
@@ -11,23 +10,8 @@ import {
   ListGroup,
   Container,
 } from "react-bootstrap";
-
-// TypeScript interfaces
-export interface CartItem {
-  id: string;
-  name: string;
-  price: number;
-  originalPrice?: number;
-  quantity: number;
-  image: string;
-  description: string;
-  category: string;
-  maxQuantity: number;
-}
-
-interface CartProps {
-  items: CartItem[];
-}
+import type { CartItem, CartProps } from "../interfaces";
+import { useCartStore } from "../data_store/cart_store";
 
 const CartSummary: React.FC<CartProps> = ({ items }) => {
   const [couponCode, setCouponCode] = useState("");
@@ -43,6 +27,8 @@ const CartSummary: React.FC<CartProps> = ({ items }) => {
   const shipping = subtotal > 50 ? 0 : 5.99; // Free shipping over $50
   const tax = subtotal * 0.08; // 8% tax
   const total = subtotal - discount + shipping + tax;
+
+  const qty = useCartStore((state) => state.overallQty);
 
   // Handle quantity changes
   const handleQuantityChange = (itemId: string, newQuantity: number) => {
@@ -107,13 +93,12 @@ const CartSummary: React.FC<CartProps> = ({ items }) => {
   return (
     <Container fluid className="py-4">
       <Row>
-        {/* Shopping Cart Pane - Scrollable */}
         <Col lg={8} className="pe-lg-4">
           <div style={{ maxHeight: "80vh", overflowY: "auto" }}>
             <Card>
               <Card.Header className="bg-white" style={{ zIndex: 1020 }}>
                 <div className="d-flex justify-content-between align-items-center">
-                  <h4 className="mb-0">Shopping Cart ({items.length} items)</h4>
+                  <h4 className="mb-0">Shopping Cart ({qty} items)</h4>
                   <Badge bg="primary" pill>
                     {items.reduce((total, item) => total + item.quantity, 0)}{" "}
                     items
@@ -284,8 +269,7 @@ const CartSummary: React.FC<CartProps> = ({ items }) => {
                     </>
                   )}
                 </div>
-
-                {/* Price Breakdown */}
+                \{" "}
                 <ListGroup variant="flush" className="mb-3">
                   <ListGroup.Item className="d-flex justify-content-between px-0">
                     <span>
@@ -324,8 +308,6 @@ const CartSummary: React.FC<CartProps> = ({ items }) => {
                     <span>${total.toFixed(2)}</span>
                   </ListGroup.Item>
                 </ListGroup>
-
-                {/* Shipping Progress */}
                 {shipping > 0 && (
                   <div className="mb-3 p-3 bg-light rounded">
                     <div className="small text-muted mb-2">
@@ -341,7 +323,6 @@ const CartSummary: React.FC<CartProps> = ({ items }) => {
                     </div>
                   </div>
                 )}
-
                 {/* Proceed to Payment Button */}
                 <div className="d-grid">
                   <Button
@@ -350,7 +331,6 @@ const CartSummary: React.FC<CartProps> = ({ items }) => {
                     onClick={handleProceedToPayment}
                   ></Button>
                 </div>
-
                 {/* Security Badge */}
                 <div className="text-center mt-3">
                   <div className="small text-muted mb-1">

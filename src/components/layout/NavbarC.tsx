@@ -36,9 +36,6 @@ function NavbarC() {
               <Nav.Link as="span">Home</Nav.Link>
             </Link>
 
-            <Link to="/login" className="text-decoration-none ">
-              <Nav.Link as="span">Login</Nav.Link>
-            </Link>
             <Link to="/addr" className="text-decoration-none ">
               <Nav.Link as="span">Address</Nav.Link>
             </Link>

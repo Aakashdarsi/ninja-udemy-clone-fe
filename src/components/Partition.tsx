@@ -1,10 +1,11 @@
-import ProductCard from "./ProductCard";
+import ProductCard from "./shared/ProductCard";
+import { ShimmerCard } from "./shared/ShimmerCard";
 
 const Partition = () => {
   return (
     <div className="container-fluid ">
       <div className="row">
-        <div className="col-3">
+        <div className="col-3 justify-content-center">
           <b>Learn essential career and life skills</b>
           <p>
             Udemy helps you build in-demand skills fast and advance your career

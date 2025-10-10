@@ -2,7 +2,7 @@ const Footer = () => {
   return (
     <div>
       <>
-        <div className="card border-light w-100">
+        <div className="card border-dark w-100">
           <div className="card-body">
             <div className="container-fluid">
               <div className="row">

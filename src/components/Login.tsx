@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { signInWithPopup } from "firebase/auth";
 import GoogleButton from "react-google-button";
-import { auth, google_auth_provider } from "../config/firebase";
+import { auth, google_auth_provider } from "../lib/firebase/firebase";
 export const Login = () => {
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
