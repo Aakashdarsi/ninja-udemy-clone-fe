@@ -11,9 +11,12 @@ import Col from "react-bootstrap/Col";
 import Cart from "../Cart";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { Logout } from "../Logout";
+import { useUserDetails } from "../../data_store/user_store";
 
 function NavbarC() {
   const navigate = useNavigate();
+  const isLoggedIn = useUserDetails((state) => state.loggedIn);
   return (
     <Navbar expand="lg" className="bg-body-tertiary mr-2">
       <Container fluid>
@@ -67,14 +70,16 @@ function NavbarC() {
             </Row>
           </Form>
         </>
-        <>
+        {isLoggedIn ? (
+          <Logout />
+        ) : (
           <button
             className="btn btn-primary"
             onClick={() => navigate("/login")}
           >
             Login
           </button>
-        </>
+        )}
         <>
           <Cart />
         </>

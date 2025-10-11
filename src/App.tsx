@@ -7,13 +7,14 @@ import About from "./components/About";
 import { Login } from "./components/Login";
 import AddressForm from "./components/AddressForm";
 import CartSummary from "./components/CartSummary";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ItemForm from "./components/ItemForm";
 import { Inventory } from "./components/Inventory";
 import { getStorage } from "firebase/storage";
+import { auth } from "./lib/firebase/firebase";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 function App() {
   {
-    /* @ts-ignore */
   }
   const [cartItems, setCartItems] = useState([
     {
@@ -71,6 +72,16 @@ function App() {
 
   const [isLoading, setIsLoading] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log(user);
+      } else {
+        console.log("user logged out");
+      }
+    });
+    unsubscribe()
+  });
   return (
     <>
       <AppLayout>
