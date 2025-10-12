@@ -12,6 +12,7 @@ import { useUserDetails } from "../../data_store/user_store";
 function NavbarC() {
   const navigate = useNavigate();
   const isLoggedIn = useUserDetails((state) => state.loggedIn);
+
   return (
     <Navbar expand="lg" className="bg-body-tertiary mr-2">
       <Container fluid>
@@ -34,20 +35,16 @@ function NavbarC() {
               <Nav.Link as="span">Home</Nav.Link>
             </Link>
 
-            <Link to="/addr" className="text-decoration-none ">
-              <Nav.Link as="span">Address</Nav.Link>
-            </Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>
+            {isLoggedIn && (
+              <>
+                <Link to="/products" className="text-decoration-none">
+                  <Nav.Link as="span">Products</Nav.Link>
+                </Link>
+                <Link to="/orders" className="text-decoration-none">
+                  <Nav.Link as="span">Orders</Nav.Link>
+                </Link>
+              </>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
@@ -62,9 +59,8 @@ function NavbarC() {
             Login
           </button>
         )}
-        <>
-          <Cart />
-        </>
+
+        {isLoggedIn && <Cart />}
       </div>
     </Navbar>
   );

@@ -11,6 +11,7 @@ export const Logout = () => {
       await signOut(auth);
       console.log("user logged out successfully");
       loggout_store();
+      alert("logout successful");
       navigate("/");
     } catch (err) {
       console.log("user logging out error", err);

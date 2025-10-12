@@ -4,7 +4,6 @@ import { Card, Row, Col, Container, Placeholder } from "react-bootstrap";
 const OrderHistoryShimmer = () => {
   return (
     <Container className="my-4">
-      {/* Header Shimmer */}
       <div className="d-flex justify-content-between align-items-center mb-4">
         <Placeholder as="h2" animation="glow">
           <Placeholder xs={4} />
@@ -14,7 +13,6 @@ const OrderHistoryShimmer = () => {
         </Placeholder>
       </div>
 
-      {/* Order Cards Shimmer */}
       {[1, 2, 3].map((orderIndex) => (
         <Card key={orderIndex} className="mb-4 shadow-sm">
           <Card.Header className="bg-light">
@@ -39,14 +37,11 @@ const OrderHistoryShimmer = () => {
           </Card.Header>
 
           <Card.Body>
-            {/* Order Items Header */}
             <Placeholder as="h6" animation="glow" className="mb-3">
               <Placeholder xs={3} />
             </Placeholder>
 
-            {/* Order Items Table Shimmer */}
             <div className="mb-4">
-              {/* Table Header */}
               <Row className="mb-3">
                 <Col md={4}>
                   <Placeholder animation="glow">
@@ -70,7 +65,6 @@ const OrderHistoryShimmer = () => {
                 </Col>
               </Row>
 
-              {/* Table Rows */}
               {[1, 2, 3].map((itemIndex) => (
                 <Row key={itemIndex} className="mb-3 align-items-center">
                   <Col md={4}>
@@ -109,7 +103,6 @@ const OrderHistoryShimmer = () => {
               ))}
             </div>
 
-            {/* Shipping and Payment Info Shimmer */}
             <Row>
               <Col md={6} className="mb-3 mb-md-0">
                 <Placeholder as="h6" animation="glow" className="mb-3">

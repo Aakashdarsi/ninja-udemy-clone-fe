@@ -11,7 +11,6 @@ import { useCartStore } from "./data_store/cart_store";
 import axios from "axios";
 
 const CartSummary = lazy(() => import("./components/CartSummary"));
-const ItemForm = lazy(() => import("./components/ItemForm"));
 const Inventory = lazy(() => import("./components/Inventory"));
 const Products = lazy(() => import("./components/Products"));
 const ProductDetails = lazy(() => import("./components/ProductDetails"));
@@ -58,7 +57,6 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/cart" element={<CartSummary />} />
-          <Route path="/add" element={<ItemForm />} />
           <Route path="/orders" element={<Inventory />} />
           <Route path="/products" element={<Products />} />
           <Route path="/product/:productId" element={<ProductDetails />} />

@@ -7,7 +7,7 @@ export interface ExampleCarouselImageProps {
   className?: string;
 }
 
-const ExampleCarouselImage: React.FC<ExampleCarouselImageProps> = ({
+const ExampleCarouselImage = ({
   src,
   alt,
   title,

@@ -17,10 +17,10 @@ function Carousell() {
             borderRadius: "10px",
           }}
         >
-          <h3>Master Tomorrow Skills</h3>
+          <h3>Master Everyday Excellence</h3>
           <p>
-            Power up your AI, career, and life skills with the most up-to-date,
-            expert-led learning.
+            Elevate your daily routine with premium, quality-tested products
+            selected by lifestyle experts.
           </p>
         </Carousel.Caption>
       </Carousel.Item>
@@ -38,8 +38,12 @@ function Carousell() {
             borderRadius: "10px",
           }}
         >
-          <h3>Get ahead, stay ahead</h3>
-          <p>Thrive with the latest skills from ₹519. Sale ends tonight!</p>
+          <h3>Shop smarter, save bigger</h3>
+          <p>
+            {" "}
+            Grab the hottest deals starting from ₹519. Limited time offer ends
+            tonight!
+          </p>
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>

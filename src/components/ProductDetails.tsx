@@ -12,7 +12,7 @@ import {
 } from "react-bootstrap";
 import axios from "axios";
 import { useUserDetails } from "../data_store/user_store";
-import { useCartStore } from "../cartState";
+import { useCartStore } from "../data_store/cart_store";
 
 const ProductDetails = () => {
   const { productId } = useParams();
@@ -58,16 +58,12 @@ const ProductDetails = () => {
         },
       );
       console.log(response.status);
-      cartStore.increment();
+      cartStore.incrementQty();
+      cartStore.addItemsCart({ ...product, quantity });
       alert("Item added successfully");
     } catch (err) {
       console.log(err);
     }
-  };
-
-  const handleBuyNow = () => {
-    console.log("Buy now:", product, "Quantity:", quantity);
-    alert(`Proceeding to buy ${quantity} ${product.name}`);
   };
 
   const handleQuantityChange = (e) => {
@@ -165,15 +161,6 @@ const ProductDetails = () => {
               )}
 
               <div className="d-grid gap-2 d-md-flex">
-                <Button
-                  variant="primary"
-                  size="lg"
-                  onClick={handleBuyNow}
-                  disabled={product.quantity === 0}
-                  className="flex-fill"
-                >
-                  Buy Now
-                </Button>
                 <Button
                   variant="outline-secondary"
                   size="lg"

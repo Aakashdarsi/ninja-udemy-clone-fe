@@ -4,7 +4,6 @@ import {
   Row,
   Col,
   Card,
-  Button,
   Nav,
   Spinner,
   Alert,
@@ -21,7 +20,6 @@ const Products = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  // Fetch all products and categories
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -54,7 +52,6 @@ const Products = () => {
     fetchData();
   }, []);
 
-  // Filter products by category
   const filterByCategory = async (category) => {
     try {
       setLoading(true);
@@ -87,20 +84,6 @@ const Products = () => {
     navigate(`/product/${productId}`);
   };
 
-  const handleAddToCart = (product, e) => {
-    e.stopPropagation();
-    // Add to cart logic here
-    console.log("Added to cart:", product);
-    alert(`${product.name} added to cart!`);
-  };
-
-  const handleBuyNow = (product, e) => {
-    e.stopPropagation();
-    // Buy now logic here
-    console.log("Buy now:", product);
-    alert(`Proceeding to buy: ${product.name}`);
-  };
-
   if (loading && products.length === 0) {
     return (
       <Container
@@ -128,7 +111,6 @@ const Products = () => {
     <Container className="my-4">
       <Row>
         <Col lg={3}>
-          {/* Categories Sidebar */}
           <Card style={{ top: "20px" }}>
             <Card.Header>
               <h5 className="mb-0">Categories</h5>
@@ -161,7 +143,6 @@ const Products = () => {
         </Col>
 
         <Col lg={9}>
-          {/* Products Grid */}
           <div className="d-flex justify-content-between align-items-center mb-4">
             <h2>
               {selectedCategory === "All" ? "All Products" : selectedCategory}
@@ -211,24 +192,6 @@ const Products = () => {
                               ? `${product.quantity} in stock`
                               : "Out of stock"}
                           </small>
-                        </div>
-                        <div className="d-grid gap-2">
-                          <Button
-                            variant="primary"
-                            size="sm"
-                            onClick={(e) => handleBuyNow(product, e)}
-                            disabled={product.quantity === 0}
-                          >
-                            Buy Now
-                          </Button>
-                          <Button
-                            variant="outline-secondary"
-                            size="sm"
-                            onClick={(e) => handleAddToCart(product, e)}
-                            disabled={product.quantity === 0}
-                          >
-                            Add to Cart
-                          </Button>
                         </div>
                       </div>
                     </Card.Body>

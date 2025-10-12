@@ -7,9 +7,10 @@ export const ImageCard = ({
   body,
   isBtnReq,
   btnTxt,
+  imgReq,
 }: ImageCardProps) => {
   return (
-    <Card style={{ width: "18rem" }}>
+    <Card style={{ width: "250px" }}>
       <Card.Img variant="top" src={src} />
       <Card.Body>
         <Card.Title>{title}</Card.Title>

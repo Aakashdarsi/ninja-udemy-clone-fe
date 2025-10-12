@@ -1,7 +1,6 @@
-import React from "react";
 import { Container, Card, Button } from "react-bootstrap";
 
-const EmptyCart: React.FC = () => {
+const EmptyCart = () => {
   return (
     <Container className="py-5">
       <Card className="p-4 text-center">

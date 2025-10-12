@@ -8,11 +8,7 @@ interface CartItemProps {
   onRemoveItem: (itemId: string) => void;
 }
 
-const CartItem: React.FC<CartItemProps> = ({
-  item,
-  onQuantityChange,
-  onRemoveItem,
-}) => {
+const CartItem = ({ item, onQuantityChange, onRemoveItem }) => {
   return (
     <div className="cart-item border-bottom p-3">
       <Row className="align-items-center">

@@ -8,12 +8,5 @@ export default defineConfig({
     headers: {
       "Cross-Origin-Opener-Policy": "same-origin-allow-popups",
     },
-    proxy: {
-      "/api": {
-        target: "https://ninja-udemy-clone-be-292768677111.asia-south1.run.app",
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ""),
-      },
-    },
   },
 });

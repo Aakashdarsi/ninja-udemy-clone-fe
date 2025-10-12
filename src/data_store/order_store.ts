@@ -2,7 +2,8 @@ import { create } from "zustand";
 import axios from "axios";
 import type { Order, ShippingAddress } from "../interfaces/index";
 
-const API_BASE_URL = "https://ninja-udemy-clone-be-292768677111.asia-south1.run.app/cart";
+const API_BASE_URL =
+  "https://ninja-udemy-clone-be-292768677111.asia-south1.run.app/cart";
 
 type OrderStore = {
   orders: Order[];
@@ -95,7 +96,9 @@ export const useOrderStore = create<OrderStore>((set, get) => ({
     set({ isLoading: true, error: null });
 
     try {
-      const response = await axios.get(`https://ninja-udemy-clone-be-292768677111.asia-south1.run.app/cart/${currentUserId}/orders`);
+      const response = await axios.get(
+        `https://ninja-udemy-clone-be-292768677111.asia-south1.run.app/cart/${currentUserId}/orders`,
+      );
 
       set({
         orders: response.data.data || [],
@@ -157,39 +160,39 @@ export const useOrderStore = create<OrderStore>((set, get) => ({
         orders: state.orders.map((order) =>
           order.orderId === orderId
             ? {
-              ...order,
-              status: updatedOrder.newStatus,
-              trackingNumber: updatedOrder.trackingNumber,
-              carrier: updatedOrder.carrier,
-              statusHistory: [
-                ...order.statusHistory,
-                {
-                  status: updatedOrder.newStatus,
-                  timestamp: new Date().toISOString(),
-                  note: `Order status updated to ${updatedOrder.newStatus}`,
-                },
-              ],
-              updatedAt: new Date().toISOString(),
-            }
+                ...order,
+                status: updatedOrder.newStatus,
+                trackingNumber: updatedOrder.trackingNumber,
+                carrier: updatedOrder.carrier,
+                statusHistory: [
+                  ...order.statusHistory,
+                  {
+                    status: updatedOrder.newStatus,
+                    timestamp: new Date().toISOString(),
+                    note: `Order status updated to ${updatedOrder.newStatus}`,
+                  },
+                ],
+                updatedAt: new Date().toISOString(),
+              }
             : order,
         ),
         currentOrder:
           state.currentOrder?.orderId === orderId
             ? {
-              ...state.currentOrder,
-              status: updatedOrder.newStatus,
-              trackingNumber: updatedOrder.trackingNumber,
-              carrier: updatedOrder.carrier,
-              statusHistory: [
-                ...state.currentOrder.statusHistory,
-                {
-                  status: updatedOrder.newStatus,
-                  timestamp: new Date().toISOString(),
-                  note: `Order status updated to ${updatedOrder.newStatus}`,
-                },
-              ],
-              updatedAt: new Date().toISOString(),
-            }
+                ...state.currentOrder,
+                status: updatedOrder.newStatus,
+                trackingNumber: updatedOrder.trackingNumber,
+                carrier: updatedOrder.carrier,
+                statusHistory: [
+                  ...state.currentOrder.statusHistory,
+                  {
+                    status: updatedOrder.newStatus,
+                    timestamp: new Date().toISOString(),
+                    note: `Order status updated to ${updatedOrder.newStatus}`,
+                  },
+                ],
+                updatedAt: new Date().toISOString(),
+              }
             : state.currentOrder,
         isLoading: false,
       }));

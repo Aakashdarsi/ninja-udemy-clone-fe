@@ -82,7 +82,7 @@ const PaymentProcessing = () => {
     };
 
     getSessionDetails(sessionId);
-  }, [sessionId]);
+  }, [sessionId, userId]);
 
   return (
     <div>

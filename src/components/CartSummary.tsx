@@ -9,10 +9,7 @@ import LoadingCart from "./loading/LoadingCart";
 import CartItemsList from "./CartItemsList";
 import { useUserDetails } from "../data_store/user_store";
 
-const CartSummary: React.FC = () => {
-  const [couponCode, setCouponCode] = useState("");
-  const [appliedCoupon, setAppliedCoupon] = useState<string | null>(null);
-  const [couponError, setCouponError] = useState("");
+const CartSummary = () => {
   const [apiCartItems, setApiCartItems] = useState<CartItem[]>([]);
   const [loading, setLoading] = useState(true);
   const userId = useUserDetails((state) => state.userId);
@@ -34,7 +31,7 @@ const CartSummary: React.FC = () => {
     (sum, item) => sum + item.price * item.quantity,
     0,
   );
-  const discount = appliedCoupon ? subtotal * 0.1 : 0;
+  const discount = subtotal * 0.1;
   const shipping = subtotal > 50 ? 0 : 5.99;
   const tax = (subtotal - discount) * 0.08;
   const total = subtotal - discount + shipping + tax;
@@ -47,35 +44,21 @@ const CartSummary: React.FC = () => {
       const item = apiCartItems.find((item) => item.id === itemId);
       if (item && newQuantity > item.maxQuantity) return;
 
+      await axios.put(
+        `https://ninja-udemy-clone-be-292768677111.asia-south1.run.app/cart/${userId}/cart/update/${itemId}`,
+        { quantity: newQuantity },
+      );
+
       setApiCartItems((prev) =>
         prev.map((item) =>
           item.id === itemId ? { ...item, quantity: newQuantity } : item,
         ),
       );
+      alert("updated succesfully");
     } catch (err) {
       alert(err);
+      console.error("Error updating item quantity:", err);
     }
-  };
-
-  const handleApplyCoupon = () => {
-    setCouponError("");
-    if (!couponCode.trim()) {
-      setCouponError("Please enter a coupon code");
-      return;
-    }
-
-    const validCoupons = ["SAVE10", "WELCOME15", "FREESHIP"];
-    if (validCoupons.includes(couponCode.toUpperCase())) {
-      setAppliedCoupon(couponCode.toUpperCase());
-      setCouponCode("");
-    } else {
-      setCouponError("Invalid coupon code");
-    }
-  };
-
-  const handleRemoveCoupon = () => {
-    setAppliedCoupon(null);
-    setCouponError("");
   };
 
   const handleRemoveItem = async (cartItemId: string) => {
@@ -85,6 +68,7 @@ const CartSummary: React.FC = () => {
       );
       setApiCartItems((prev) => prev.filter((item) => item.id !== cartItemId));
       cartStore.decrementQty();
+      alert("Item removal successful");
     } catch (err) {
       console.log("Error removing item:", err);
     }
@@ -131,7 +115,7 @@ const CartSummary: React.FC = () => {
             quantity: item.quantity,
             image: item.image,
           })),
-          amount: Math.round(total * 100), // amount in cents
+          amount: Math.round(total * 100),
         },
       );
       console.log(response.data.url.url);
@@ -143,7 +127,6 @@ const CartSummary: React.FC = () => {
       }
     } catch (error) {
       console.error("Error creating checkout session:", error);
-      // Handle error appropriately
       return;
     }
   };
@@ -175,12 +158,6 @@ const CartSummary: React.FC = () => {
             shipping={shipping}
             tax={tax}
             total={total}
-            couponCode={couponCode}
-            appliedCoupon={appliedCoupon}
-            couponError={couponError}
-            onCouponCodeChange={setCouponCode}
-            onApplyCoupon={handleApplyCoupon}
-            onRemoveCoupon={handleRemoveCoupon}
             onProceedToPayment={handleProceedToPayment}
           />
         </Col>

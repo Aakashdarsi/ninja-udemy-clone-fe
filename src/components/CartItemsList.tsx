@@ -9,11 +9,7 @@ interface CartItemsListProps {
   onRemoveItem: (itemId: string) => void;
 }
 
-const CartItemsList: React.FC<CartItemsListProps> = ({
-  items,
-  onQuantityChange,
-  onRemoveItem,
-}) => {
+const CartItemsList = ({ items, onQuantityChange, onRemoveItem }) => {
   return (
     <ListGroup variant="flush">
       {items.map((item) => (

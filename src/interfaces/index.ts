@@ -4,6 +4,7 @@ export interface ImageCardProps {
   body: string;
   isBtnReq?: boolean;
   btnTxt?: string;
+  imgReq?: boolean;
 }
 
 export interface CartItem {
@@ -122,4 +123,14 @@ export interface CartApiResponse {
 
 export interface ShippingProgressProps {
   subtotal: number;
+}
+
+export interface OrderSummaryProps {
+  items: CartItem[];
+  subtotal: number;
+  discount: number;
+  shipping: number;
+  tax: number;
+  total: number;
+  onProceedToPayment: () => void;
 }

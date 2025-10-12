@@ -1,7 +1,4 @@
-import React from "react";
-import type { ShippingProgressProps } from "../interfaces";
-
-const ShippingProgress: React.FC<ShippingProgressProps> = ({ subtotal }) => {
+const ShippingProgress = ({ subtotal }) => {
   return (
     <div className="mb-3 p-3 bg-light rounded">
       <div className="small text-muted mb-2">
