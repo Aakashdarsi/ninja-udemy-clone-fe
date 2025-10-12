@@ -1,5 +1,4 @@
 import ProductCard from "./shared/ProductCard";
-import { ShimmerCard } from "./shared/ShimmerCard";
 
 const Partition = () => {
   return (

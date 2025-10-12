@@ -1,101 +1,71 @@
 import { Route, Routes } from "react-router-dom";
-import AppLayout from "./components/layout/AppLayout";
 import "./scss/styles.scss";
 import "./App.css";
 import Home from "./components/Home";
-import About from "./components/About";
 import { Login } from "./components/Login";
-import AddressForm from "./components/AddressForm";
-import CartSummary from "./components/CartSummary";
-import { useEffect, useState } from "react";
-import ItemForm from "./components/ItemForm";
-import { Inventory } from "./components/Inventory";
-import { getStorage } from "firebase/storage";
+import { useEffect, Suspense, lazy } from "react";
 import { auth } from "./lib/firebase/firebase";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-function App() {
-  {
-  }
-  const [cartItems, setCartItems] = useState([
-    {
-      id: "1",
-      name: "Wireless Bluetooth Headphones",
-      price: 99.99,
-      originalPrice: 129.99,
-      quantity: 1,
-      image: "/assets/headphones.jpg",
-      description: "Noise cancelling wireless headphones",
-      category: "Electronics",
-      maxQuantity: 5,
-    },
-    {
-      id: "2",
-      name: "Smart Fitness Watch",
-      price: 199.99,
-      quantity: 2,
-      image: "/assets/smartwatch.jpg",
-      description: "Advanced fitness tracking watch",
-      category: "Wearables",
-      maxQuantity: 3,
-    },
-    {
-      id: "3",
-      name: "USB-C Charging Cable",
-      price: 19.99,
-      quantity: 3,
-      image: "/assets/cable.jpg",
-      description: "Fast charging 6ft USB-C cable",
-      category: "Accessories",
-      maxQuantity: 10,
-    },
-    {
-      id: "445",
-      name: "USB-C Charging Cable",
-      price: 19.99,
-      quantity: 3,
-      image: "/assets/cable.jpg",
-      description: "Fast charging 6ft USB-C cable",
-      category: "Accessories",
-      maxQuantity: 10,
-    },
-    {
-      id: "3323",
-      name: "USB-C Charging Cable",
-      price: 19.99,
-      quantity: 3,
-      image: "/assets/cable.jpg",
-      description: "Fast charging 6ft USB-C cable",
-      category: "Accessories",
-      maxQuantity: 10,
-    },
-  ]);
+import { onAuthStateChanged } from "firebase/auth";
+import { useUserDetails } from "./data_store/user_store";
+import { useCartStore } from "./data_store/cart_store";
+import axios from "axios";
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
+const CartSummary = lazy(() => import("./components/CartSummary"));
+const ItemForm = lazy(() => import("./components/ItemForm"));
+const Inventory = lazy(() => import("./components/Inventory"));
+const Products = lazy(() => import("./components/Products"));
+const ProductDetails = lazy(() => import("./components/ProductDetails"));
+const AppLayout = lazy(() => import("./components/layout/AppLayout"));
+const PaymentProcessing = lazy(() => import("./components/PaymentProcessing"));
+
+const LoadingSpinner = () => (
+  <div className="flex justify-center items-center h-64">
+    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
+  </div>
+);
+
+function App() {
+  const cartStore = useCartStore();
+  const userLoggedin = useUserDetails();
+  const getCartQuantity = async (userId) => {
+    try {
+      const quant = await axios.get(
+        `http://localhost:3000/cart/${userId}/cart/quantity`,
+      );
+      const length = quant.data.length ? quant.data.length : 0;
+      cartStore.setCartQty(length);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log(user);
+        const { uid, displayName } = user;
+        userLoggedin.setUser(uid, displayName);
+        getCartQuantity(uid);
       } else {
-        console.log("user logged out");
+        userLoggedin.logOutUser();
       }
     });
-    unsubscribe()
-  });
+    return () => unsubscribe();
+  }, []);
   return (
-    <>
+    <Suspense fallback={<LoadingSpinner />}>
       <AppLayout>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/addr" element={<AddressForm />} />
-          <Route path="/cart" element={<CartSummary items={cartItems} />} />
+          <Route path="/cart" element={<CartSummary />} />
           <Route path="/add" element={<ItemForm />} />
-          <Route path="/inventory" element={<Inventory />} />
+          <Route path="/orders" element={<Inventory />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/product/:productId" element={<ProductDetails />} />
+          <Route path="/success" element={<PaymentProcessing />} />
         </Routes>
       </AppLayout>
-    </>
+    </Suspense>
   );
 }
 

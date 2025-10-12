@@ -1,5 +1,3 @@
-import React from "react";
-import { ImageCard } from "./ImageCard";
 import { ShimmerCard } from "./ShimmerCard";
 
 export const ItemDisplayCard = () => {

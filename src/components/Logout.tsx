@@ -13,7 +13,7 @@ export const Logout = () => {
       loggout_store();
       navigate("/");
     } catch (err) {
-      console.log("user logging out error");
+      console.log("user logging out error", err);
     }
   };
 

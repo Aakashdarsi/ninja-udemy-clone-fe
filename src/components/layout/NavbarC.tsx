@@ -3,11 +3,6 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Image from "react-bootstrap/Image";
-
-import Form from "react-bootstrap/Form";
-
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import Cart from "../Cart";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -57,19 +52,6 @@ function NavbarC() {
         </Navbar.Collapse>
       </Container>
       <div className="d-flex gap-2 mx-4">
-        <>
-          <Form>
-            <Row>
-              <Col xs="auto">
-                <Form.Control
-                  type="text"
-                  placeholder="Search"
-                  className=" mr-sm-2"
-                />
-              </Col>
-            </Row>
-          </Form>
-        </>
         {isLoggedIn ? (
           <Logout />
         ) : (

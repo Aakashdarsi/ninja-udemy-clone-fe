@@ -11,8 +11,8 @@ const Home = () => {
     fetch_countries();
   }, []);
 
-  const filter_json = (data: any) => {
-    return data.map((item: any) => item.name.common).sort();
+  const filter_json = (data) => {
+    return data.map((item) => item.name.common).sort();
   };
 
   const fetch_countries = async () => {

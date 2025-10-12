@@ -15,7 +15,6 @@ export const Login = () => {
       const result = await signInWithPopup(auth, provider);
 
       const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential?.accessToken;
       const user_id = result.user?.uid;
       const user_name = result.user?.displayName;
       user_store.setUser(user_id, user_name);

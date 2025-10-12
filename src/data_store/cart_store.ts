@@ -7,13 +7,18 @@ type cartStore = {
   overallQty: number;
   incrementQty(): void;
   decrementQty(): void;
+  setCartQty(qty: number): void;
+  addItemsCart(items: cartProdProps[]): void;
 };
 
 export const useCartStore = create<cartStore>((set) => ({
-  overallQty: 3,
+  overallQty: 0,
   items: [],
   buyItems: true,
   clearCart: true,
   incrementQty: () => set((state) => ({ overallQty: state.overallQty + 1 })),
   decrementQty: () => set((state) => ({ overallQty: state.overallQty - 1 })),
+  setCartQty: (qty) => set(() => ({ overallQty: qty })),
+  addItemsCart: (items) =>
+    set((state) => ({ items: [...state.items, ...items] })),
 }));
