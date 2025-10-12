@@ -30,7 +30,7 @@ function App() {
   const getCartQuantity = async (userId) => {
     try {
       const quant = await axios.get(
-        `http://localhost:3000/cart/${userId}/cart/quantity`,
+        `https://ninja-udemy-clone-be-292768677111.asia-south1.run.app/cart/${userId}/cart/quantity`,
       );
       const length = quant.data.length ? quant.data.length : 0;
       cartStore.setCartQty(length);

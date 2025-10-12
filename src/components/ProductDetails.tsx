@@ -29,7 +29,7 @@ const ProductDetails = () => {
       try {
         setLoading(true);
         const res = await axios.get(
-          `http://localhost:3000/products/products/${productId}`,
+          `https://ninja-udemy-clone-be-292768677111.asia-south1.run.app/products/products/${productId}`,
         );
 
         if (res.data.success) {
@@ -51,7 +51,7 @@ const ProductDetails = () => {
   const handleAddToCart = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:3000/cart/${uid}/cart/add`,
+        `https://ninja-udemy-clone-be-292768677111.asia-south1.run.app/cart/${uid}/cart/add`,
         {
           ...product,
           quantity,

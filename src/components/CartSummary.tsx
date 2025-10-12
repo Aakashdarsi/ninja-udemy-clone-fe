@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import type { CartItem, CartApiResponse, Order } from "../interfaces";
-import { loadStripe } from "@stripe/stripe-js";
 import { useCartStore } from "../data_store/cart_store";
 import axios from "axios";
 import OrderSummary from "./OrderSummary";
@@ -9,7 +8,6 @@ import EmptyCart from "./EmptyCart";
 import LoadingCart from "./loading/LoadingCart";
 import CartItemsList from "./CartItemsList";
 import { useUserDetails } from "../data_store/user_store";
-import { useNavigate } from "react-router-dom";
 
 const CartSummary: React.FC = () => {
   const [couponCode, setCouponCode] = useState("");
@@ -83,7 +81,7 @@ const CartSummary: React.FC = () => {
   const handleRemoveItem = async (cartItemId: string) => {
     try {
       await axios.delete(
-        `http://localhost:3000/cart/${userId}/cart/remove/${cartItemId}`,
+        `https://ninja-udemy-clone-be-292768677111.asia-south1.run.app/cart/${userId}/cart/remove/${cartItemId}`,
       );
       setApiCartItems((prev) => prev.filter((item) => item.id !== cartItemId));
       cartStore.decrementQty();
@@ -101,7 +99,7 @@ const CartSummary: React.FC = () => {
         }
         setLoading(true);
         const res = await axios.get<CartApiResponse>(
-          `http://localhost:3000/cart/${userId}/cart`,
+          `https://ninja-udemy-clone-be-292768677111.asia-south1.run.app/cart/${userId}/cart`,
         );
 
         const transformedItems = Array.isArray(res.data.cart)
@@ -125,7 +123,7 @@ const CartSummary: React.FC = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/pay/create-checkout-session",
+        "https://ninja-udemy-clone-be-292768677111.asia-south1.run.app/pay/create-checkout-session",
         {
           items: apiCartItems.map((item) => ({
             name: item.name,

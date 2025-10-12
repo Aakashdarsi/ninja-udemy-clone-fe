@@ -9,10 +9,10 @@ export default defineConfig({
       "Cross-Origin-Opener-Policy": "same-origin-allow-popups",
     },
     proxy: {
-      // Proxy API requests to your local backend
       "/api": {
-        target: "http://localhost:3000", // Change this to your backend server's address
+        target: "https://ninja-udemy-clone-be-292768677111.asia-south1.run.app",
         changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
       },
     },
   },

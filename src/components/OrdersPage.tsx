@@ -18,7 +18,7 @@ export const OrdersPage = () => {
     const fetchOrders = async (userId) => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/cart/${userId}/orders`,
+          `https://ninja-udemy-clone-be-292768677111.asia-south1.run.app/cart/${userId}/orders`,
         );
         setOrderData(response.data.orders);
         setTotalOrders(response.data.totalOrders);

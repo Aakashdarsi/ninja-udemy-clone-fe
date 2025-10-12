@@ -55,7 +55,7 @@ const PaymentProcessing = () => {
         console.log("Order Payload:", orderPayload);
 
         const order_process = await axios.post(
-          `http://localhost:3000/cart/${userId}/orders/create`,
+          `https://ninja-udemy-clone-be-292768677111.asia-south1.run.app/cart/${userId}/orders/create`,
           orderPayload,
         );
         alert("order processed successfully");
@@ -68,7 +68,7 @@ const PaymentProcessing = () => {
       if (!sessionId) return;
       try {
         const response = await axios.get(
-          `http://localhost:3000/pay/session-status?session_id=${sessionId}`,
+          `https://ninja-udemy-clone-be-292768677111.asia-south1.run.app/pay/session-status?session_id=${sessionId}`,
         );
         setSessionData(response.data);
         setCustomerDetails(response.data?.session?.customer_details);

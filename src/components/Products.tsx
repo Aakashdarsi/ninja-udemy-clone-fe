@@ -27,8 +27,12 @@ const Products = () => {
       try {
         setLoading(true);
         const [productsRes, categoriesRes] = await Promise.all([
-          axios.get("http://localhost:3000/products/products"),
-          axios.get("http://localhost:3000/products/categories"),
+          axios.get(
+            "https://ninja-udemy-clone-be-292768677111.asia-south1.run.app/products/products",
+          ),
+          axios.get(
+            "https://ninja-udemy-clone-be-292768677111.asia-south1.run.app/products/categories",
+          ),
         ]);
 
         if (productsRes.data.success) {
@@ -57,13 +61,15 @@ const Products = () => {
       setSelectedCategory(category);
 
       if (category === "All") {
-        const res = await axios.get("http://localhost:3000/products/products");
+        const res = await axios.get(
+          "https://ninja-udemy-clone-be-292768677111.asia-south1.run.app/products/products",
+        );
         if (res.data.success) {
           setFilteredProducts(res.data.data);
         }
       } else {
         const res = await axios.get(
-          `http://localhost:3000/products/products/category/${category}`,
+          `https://ninja-udemy-clone-be-292768677111.asia-south1.run.app/products/products/category/${category}`,
         );
         if (res.data.success) {
           setFilteredProducts(res.data.data);
